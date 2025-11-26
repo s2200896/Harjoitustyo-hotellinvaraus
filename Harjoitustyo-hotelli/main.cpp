@@ -13,7 +13,7 @@ int main() {
 
 	Room rooms[roomQuantity];	
 
-	// Initialize room numbers
+	// Initialize rooms
 	for (int i = 0; i < roomQuantity; i++) {
 		rooms[i].roomNumber = i + 1;
 	}

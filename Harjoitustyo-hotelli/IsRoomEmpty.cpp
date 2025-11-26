@@ -1,7 +1,12 @@
 #include "header.h"
 
-// Returns 1, if empty
-bool IsRoomEmpty(const Room& room, int roomNumber) {
-	return room.roomStatus[roomNumber - 1] == 0;
+// Returns true, if empty
+bool IsRoomEmpty(Room(&rooms)[roomQuantity], int roomNumber) {
+	if (rooms[roomNumber - 1].reserved == 1) {	// If reserved return false
+		return false;
+	}
+	else {
+		return true;
+	}
 
 }

@@ -5,15 +5,16 @@
 
 
 
-void ReserveRoom(Room& hotel) {
+void ReserveRoom(Room (&rooms)[roomQuantity]) {
 	int roomNumber;
 	bool empty;
 	int nights;
 	double bill;
 	int choice;
 	int confirm;
-	Reservation reservation;
+	std::string customerName;
 
+	Room room;	// To access structure data
 
 	do {
 
@@ -23,16 +24,16 @@ void ReserveRoom(Room& hotel) {
 		do {
 			validateType(roomNumber, room_errmsg);
 
-			if (roomNumber < 1 || roomNumber > hotel.quantity) {
+			if (roomNumber < 1 || roomNumber > roomQuantity) {
 				std::cout << room_errmsg;
 			}
 
-		} while (roomNumber < 1 || roomNumber > hotel.quantity);
+		} while (roomNumber < 1 || roomNumber > roomQuantity);
 
 
 
 		// Store information about the reservation to variable
-		empty = IsRoomEmpty(hotel, roomNumber);
+		empty = IsRoomEmpty(rooms, roomNumber);
 
 
 
@@ -58,9 +59,9 @@ void ReserveRoom(Room& hotel) {
 			do {
 				std::cout << "In whose name the reservation is made? (first and last name)\n";
 				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-				std::getline(std::cin, reservation.customerName);
+				std::getline(std::cin, customerName);
 
-				std::cout << "Is the following name correct: " << reservation.customerName << std::endl << "Yes[1], No[0]: ";
+				std::cout << "Is the following name correct: " << customerName << std::endl << "Yes[1], No[0]: ";
 
 				// Validate input. Must be 1 or 0
 				do {
@@ -80,7 +81,7 @@ void ReserveRoom(Room& hotel) {
 
 
 
-			bill = Bill(hotel, nights);		// Store bill information in variable
+			bill = Bill(room, nights, roomNumber);		// Store bill information in variable
 
 			std::cout << "Total cost would be " << bill << " Euros" << " from " << nights << " nights\n";	 // Condition for whether to print "night" or "nights"?	
 
@@ -99,17 +100,22 @@ void ReserveRoom(Room& hotel) {
 
 
 			if (choice == 1) {
-				std::cout << "Room " << roomNumber << " reserved.\n";
-				hotel.roomStatus[roomNumber - 1] = 1; // Reserve room
+				// Reserve room
+				int reservationNumber = GenerateResNum();
+				rooms[roomNumber - 1].reservation.reservationNumber = reservationNumber;
+				rooms[roomNumber - 1].reserved = true;
+				rooms[roomNumber - 1].reservation.customer = customerName;
 
+				std::cout << "Room " << roomNumber << " is reserved for " << rooms[roomNumber - 1].reservation.customer << ".\n";
 			}
 			else {
-				ReserveRoom(hotel);		// Start over incase of cancelled reservation 
+				ReserveRoom(rooms);		// Start over incase of cancelled reservation 
 			}
 		}
 		else {
 			std::cout << "Room " << roomNumber << " is already reserved. Please select another room.\n";
 		}
+
 
 	} while (!empty);	//	Ask customer to select other room if reserved
 

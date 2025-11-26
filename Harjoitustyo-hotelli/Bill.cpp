@@ -1,6 +1,7 @@
 #include "header.h"
 
 // Returns the bill from the hotel room
-double Bill(Room& hotel, int nights) {
-	return nights * hotel.price;
+// Add possible discounts later
+double Bill(Room (&room), int nights, int roomNumber) {
+    return nights * room.price;
 }

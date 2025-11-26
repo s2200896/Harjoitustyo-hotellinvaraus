@@ -2,29 +2,36 @@
 #include <iostream>
 #include <string>
 #include <limits>
+#include <vector>
 
 // Room structure
-struct Room
-{
-	static const int quantity = 10;		// Total number of rooms
-	double price = 100.0;				// Default price for a room
-	int roomStatus[quantity] = { 0 };	// Initialize with 0, 0 = empty room, 1 = reserved room
-	int reservationNumber;
-
-};
-
 struct Reservation
 {
 	int reservationNumber;
-	std::string customerName;
+	std::string customer;		//customer name
+	double discountPercentage;
+};
+
+struct Room
+{
+	int roomNumber;		// 1-total amount of rooms
+	double price = 100.0; // Default price		
+	bool reserved;		// 1 if reserved
+	Reservation reservation;
+
 };
 
 
+const int roomQuantity = 10;	// Total amount of rooms
+
+
 // Function declarations
-void ReserveRoom(Room& hotel);
-double Bill(Room& hotel, int nights);
-bool IsRoomEmpty(const Room& room, int);
+void ReserveRoom(Room (&rooms)[roomQuantity]);
+double Bill(Room (&room), int nights, int roomNumber);
+bool IsRoomEmpty(Room(&rooms)[roomQuantity], int roomNumber);
 template <typename T> void validateType(T& input, const std::string errMsg);
+void PrintReservation();
+int GenerateResNum();		// Generated unique reservation number
 
 
 

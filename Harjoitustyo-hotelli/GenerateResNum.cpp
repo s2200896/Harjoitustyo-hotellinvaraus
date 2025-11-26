@@ -1,16 +1,23 @@
 #include "header.h"
 #include <cstdlib>
-#include <ctime>
 
-// Generates random reservation number between 10000 and 99999
-int GenerateResNum() {
+// Generates reservation number between 10000 and 99999
+int GenerateResNum(Room (&rooms)[roomQuantity]) {
 	int resNum;
-	srand(time(0));
 
-	resNum = 10000 + rand() % 90000;
+	while (true) {
+		resNum = 10000 + rand() % 90000;
 
-	// Check if reservation number is already in use
-
-	return resNum;
-	
+		bool found = false;
+		// Check all rooms to see if the generated reservation number is already in use
+		for (int i = 0; i < roomQuantity; i++) {
+			if (resNum == rooms[i].reservation.reservationNumber) {
+				found = true;
+				break;
+			}
+		}
+		if (!found) {
+			return resNum;
+		}
+	}
 }

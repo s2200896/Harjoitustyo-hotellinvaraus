@@ -3,6 +3,7 @@
 #include <string>
 #include <limits>
 #include <vector>
+#include "validateType.h"
 
 // Room structure
 struct Reservation
@@ -31,22 +32,7 @@ double Bill(Room (&room), int nights, int roomNumber);
 bool IsRoomEmpty(Room(&rooms)[roomQuantity], int roomNumber);
 template <typename T> void validateType(T& input, const std::string errMsg);
 void PrintReservation();
-int GenerateResNum();		// Generated unique reservation number
+int GenerateResNum(Room (&rooms)[roomQuantity]);		// Generate unique reservation number
 
 
 
-// Continously reads input into "input" until a valid value of type T is entered 
-// if the extraction fails customer will be prompted with the provided error message
-template <typename T> void validateType(T& input, const std::string errMsg) {
-
-	std::cin >> input;
-
-	while (std::cin.fail()) {
-		std::cin.clear();
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		std::cout << errMsg;
-
-		std::cin >> input;
-	}
-
-}

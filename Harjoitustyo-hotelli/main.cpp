@@ -1,6 +1,8 @@
 #include <iostream>
 #include <limits>
 #include <string>
+#include <ctime>
+#include <cstdlib>
 #include "header.h"
 #include "error_messages.h"
 
@@ -9,6 +11,8 @@
 int main() {
 	int input;
 	int choice;
+
+	srand(time(0));	// For GenerateResNum()
 
 
 	Room rooms[roomQuantity];	
@@ -55,10 +59,6 @@ int main() {
 		case 6: return 0;
 
 		}
-
-		//Debug testi
-		std::cout << "Varaajan nimi: " << rooms[0].reservation.customer << std::endl << "Varausnumero: " << rooms[0].reservation.reservationNumber << std::endl;
-		std::cout << "Varaajan nimi: " << rooms[1].reservation.customer << std::endl << "Varausnumero: " << rooms[1].reservation.reservationNumber;
 
 
 

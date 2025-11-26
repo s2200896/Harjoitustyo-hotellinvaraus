@@ -21,6 +21,9 @@
     <ClInclude Include="error_messages.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="validateType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

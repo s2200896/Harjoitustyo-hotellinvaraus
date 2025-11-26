@@ -125,6 +125,7 @@
   <ItemGroup>
     <ClInclude Include="error_messages.h" />
     <ClInclude Include="header.h" />
+    <ClInclude Include="validateType.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bill.cpp" />

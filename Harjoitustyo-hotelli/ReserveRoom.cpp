@@ -39,7 +39,6 @@ void ReserveRoom(Room (&rooms)[roomQuantity]) {
 
 		// Reserve room if empty
 		if (empty) {
-			// Add functionality to store the information about reservation
 
 			std::cout << "How many nights would you like to reserve the room for?\n";
 
@@ -55,7 +54,6 @@ void ReserveRoom(Room (&rooms)[roomQuantity]) {
 
 
 			// Ask customer's name
-			// TODO: Link customer to the room being reserved
 			do {
 				std::cout << "In whose name the reservation is made? (first and last name)\n";
 				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -101,7 +99,7 @@ void ReserveRoom(Room (&rooms)[roomQuantity]) {
 
 			if (choice == 1) {
 				// Reserve room
-				int reservationNumber = GenerateResNum();
+				int reservationNumber = GenerateResNum(rooms);
 				rooms[roomNumber - 1].reservation.reservationNumber = reservationNumber;
 				rooms[roomNumber - 1].reserved = true;
 				rooms[roomNumber - 1].reservation.customer = customerName;

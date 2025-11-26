@@ -5,7 +5,7 @@
 
 
 
-void ReserveRoom(Room (&rooms)[roomQuantity]) {
+void ReserveRoom(Room (&rooms)[roomQuantity], std::vector<Reservation>& reservations) {
 	int roomNumber;
 	bool empty;
 	int nights;
@@ -104,10 +104,19 @@ void ReserveRoom(Room (&rooms)[roomQuantity]) {
 				rooms[roomNumber - 1].reserved = true;
 				rooms[roomNumber - 1].reservation.customer = customerName;
 
+				// Create new reservation
+				Reservation newReservation;
+				newReservation.reservationNumber = reservationNumber;
+				newReservation.customer = customerName;
+				newReservation.roomNumber = roomNumber;
+
+				// Update reservations vector
+				reservations.push_back(newReservation);
+
 				std::cout << "Room " << roomNumber << " is reserved for " << rooms[roomNumber - 1].reservation.customer << ".\n";
 			}
 			else {
-				ReserveRoom(rooms);		// Start over incase of cancelled reservation 
+				ReserveRoom(rooms, reservations);		// Start over incase of cancelled reservation 
 			}
 		}
 		else {

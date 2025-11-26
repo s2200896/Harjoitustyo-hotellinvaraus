@@ -11,6 +11,7 @@ struct Reservation
 	int reservationNumber;
 	std::string customer;		//customer name
 	double discountPercentage;
+	int roomNumber;
 };
 
 struct Room
@@ -27,11 +28,11 @@ const int roomQuantity = 10;	// Total amount of rooms
 
 
 // Function declarations
-void ReserveRoom(Room (&rooms)[roomQuantity]);
+void ReserveRoom(Room (&rooms)[roomQuantity], std::vector<Reservation>& reservations);
 double Bill(Room (&room), int nights, int roomNumber);
 bool IsRoomEmpty(Room(&rooms)[roomQuantity], int roomNumber);
 template <typename T> void validateType(T& input, const std::string errMsg);
-void PrintReservation();
+void PrintReservation(std::vector<Reservation> &reservations);
 int GenerateResNum(Room (&rooms)[roomQuantity]);		// Generate unique reservation number
 
 

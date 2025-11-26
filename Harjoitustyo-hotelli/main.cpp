@@ -16,6 +16,7 @@ int main() {
 
 
 	Room rooms[roomQuantity];	
+	std::vector<Reservation> reservations;	// Reservations are stored in order of creation, not by room number
 
 	// Initialize rooms
 	for (int i = 0; i < roomQuantity; i++) {
@@ -46,9 +47,9 @@ int main() {
 
 		// Handle selected menu option
 		switch (input) {
-		case 1: ReserveRoom(rooms);
+		case 1: ReserveRoom(rooms, reservations);
 			break;
-		case 2: PrintReservation();
+		case 2: PrintReservation(reservations);
 			break;
 		//case 3: FindReservation();
 		//	break;
@@ -77,9 +78,15 @@ int main() {
 
 		} while (choice != 1 && choice != 0);
 
+		// Clear command prompt for better usability 
+		if (choice == 1) {
+			system("cls");
+		}
+		else {
+			// Greet the customer
+			std::cout << "Thank you! Wishing you a relaxing and pleasant stay." << std::endl;
 
-		// Greet the customer
-		std::cout << "Thank you! Wishing you a relaxing and pleasant stay." << std::endl;
+		}
 
 	} while (choice == 1);
 

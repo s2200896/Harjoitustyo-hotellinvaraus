@@ -131,6 +131,7 @@
     <ClCompile Include="Bill.cpp" />
     <ClCompile Include="IsRoomEmpty.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="PrintAllReservations.cpp" />
     <ClCompile Include="PrintReservation.cpp" />
     <ClCompile Include="ReserveRoom.cpp" />
     <ClCompile Include="GenerateResNum.cpp" />

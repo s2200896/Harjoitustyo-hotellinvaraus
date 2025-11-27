@@ -33,6 +33,7 @@ double Bill(Room (&room), int nights, int roomNumber);
 bool IsRoomEmpty(Room(&rooms)[roomQuantity], int roomNumber);
 template <typename T> void validateType(T& input, const std::string errMsg);
 void PrintReservation(std::vector<Reservation> &reservations);
+void PrintAllReservations(std::vector<Reservation>& reservations);
 int GenerateResNum(Room (&rooms)[roomQuantity]);		// Generate unique reservation number
 
 

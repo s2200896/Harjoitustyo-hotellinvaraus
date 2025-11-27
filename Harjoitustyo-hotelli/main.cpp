@@ -55,8 +55,8 @@ int main() {
 		//	break;
 		//case 4: CancelReservation();
 		//	break;
-		//case 5: PrintAllReservations();
-		//	break;
+		case 5: PrintAllReservations(reservations);
+			break;
 		case 6: return 0;
 
 		}

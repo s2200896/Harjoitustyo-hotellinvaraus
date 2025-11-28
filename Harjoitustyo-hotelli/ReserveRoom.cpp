@@ -5,7 +5,7 @@
 
 
 
-void ReserveRoom(Room (&rooms)[roomQuantity], std::vector<Reservation>& reservations) {
+void ReserveRoom(std::vector<Room>& rooms, std::vector<Reservation>& reservations, int roomQuantity) {
 	int roomNumber;
 	bool empty;
 	int nights;
@@ -18,17 +18,17 @@ void ReserveRoom(Room (&rooms)[roomQuantity], std::vector<Reservation>& reservat
 
 	do {
 
-		std::cout << "What room would you like to reserve? (1-10):\n";
+		std::cout << "What room would you like to reserve? (1-" << roomQuantity << "): ";
 
 		// Validate room number. Must be integer, more or equal to 1 and less or equal to hotel.quantity (total amount of rooms)
 		do {
-			validateType(roomNumber, room_errmsg);
+			validateType(roomNumber, room_errmsg(roomQuantity));
 
-			if (roomNumber < 1 || roomNumber > roomQuantity) {
-				std::cout << room_errmsg;
+			if (roomNumber < 1 || roomNumber > rooms.size()) {
+				std::cout << room_errmsg(roomQuantity);
 			}
 
-		} while (roomNumber < 1 || roomNumber > roomQuantity);
+		} while (roomNumber < 1 || roomNumber > rooms.size());
 
 
 
@@ -99,24 +99,26 @@ void ReserveRoom(Room (&rooms)[roomQuantity], std::vector<Reservation>& reservat
 
 			if (choice == 1) {
 				// Reserve room
+				const int index = roomNumber - 1;	// Convert roomNumber to 0 based vector index
 				int reservationNumber = GenerateResNum(rooms);
-				rooms[roomNumber - 1].reservation.reservationNumber = reservationNumber;
-				rooms[roomNumber - 1].reserved = true;
-				rooms[roomNumber - 1].reservation.customer = customerName;
+				rooms[index].reservation.reservationNumber = reservationNumber;
+				rooms[index].reserved = true;
+				rooms[index].reservation.customer = customerName;
 
 				// Create new reservation
 				Reservation newReservation;
 				newReservation.reservationNumber = reservationNumber;
 				newReservation.customer = customerName;
 				newReservation.roomNumber = roomNumber;
+				newReservation.capacity = rooms[index].capacity;
 
 				// Update reservations vector
 				reservations.push_back(newReservation);
 
-				std::cout << "Room " << roomNumber << " is reserved for " << rooms[roomNumber - 1].reservation.customer << ".\n";
+				std::cout << "Room " << roomNumber << " is reserved for " << rooms[index].reservation.customer << ".\n";
 			}
 			else {
-				ReserveRoom(rooms, reservations);		// Start over incase of cancelled reservation 
+				ReserveRoom(rooms, reservations, roomQuantity);		// Start over incase of cancelled reservation 
 			}
 		}
 		else {

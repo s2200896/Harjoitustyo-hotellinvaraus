@@ -1,8 +1,9 @@
 #include "header.h"
 
 // Returns true, if empty
-bool IsRoomEmpty(Room(&rooms)[roomQuantity], int roomNumber) {
-	if (rooms[roomNumber - 1].reserved == 1) {	// If reserved return false
+bool IsRoomEmpty(std::vector<Room>& rooms, int roomNumber) {
+	const int index = roomNumber - 1;	// Convert roomNumber to 0 based vector index
+	if (rooms[index].reserved == 1) {	// If reserved return false
 		return false;
 	}
 	else {

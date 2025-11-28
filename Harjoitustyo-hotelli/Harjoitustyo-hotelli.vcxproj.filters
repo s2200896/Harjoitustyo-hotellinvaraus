@@ -47,5 +47,11 @@
     <ClCompile Include="PrintAllReservations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="InitializeRooms.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GetRoomQuantity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

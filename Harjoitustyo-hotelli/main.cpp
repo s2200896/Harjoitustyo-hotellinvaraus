@@ -14,14 +14,12 @@ int main() {
 
 	srand(time(0));	// For GenerateResNum()
 
-
-	Room rooms[roomQuantity];	
+	
+	std::vector<Room> rooms;
 	std::vector<Reservation> reservations;	// Reservations are stored in order of creation, not by room number
 
 	// Initialize rooms
-	for (int i = 0; i < roomQuantity; i++) {
-		rooms[i].roomNumber = i + 1;
-	}
+	int roomQuantity = InitializeRooms(rooms);
 
 
 	do {
@@ -47,7 +45,7 @@ int main() {
 
 		// Handle selected menu option
 		switch (input) {
-		case 1: ReserveRoom(rooms, reservations);
+		case 1: ReserveRoom(rooms, reservations, roomQuantity);
 			break;
 		case 2: PrintReservation(reservations);
 			break;

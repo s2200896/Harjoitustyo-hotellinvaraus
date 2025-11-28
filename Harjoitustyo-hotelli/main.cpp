@@ -26,7 +26,7 @@ int main() {
 
 		std::cout << "How may I help you?" << std::endl;
 		std::cout << "1. Reserve Room" << std::endl;
-		std::cout << "2. Print Reservation" << std::endl;
+		std::cout << "2. Print latest Reservation" << std::endl;
 		std::cout << "3. Find Reservation" << std::endl;
 		std::cout << "4. Cancel Reservation" << std::endl;
 		std::cout << "5. Print All Reservations" << std::endl;

@@ -79,7 +79,7 @@ void ReserveRoom(std::vector<Room>& rooms, std::vector<Reservation>& reservation
 
 
 
-			bill = Bill(room, nights, roomNumber);		// Store bill information in variable
+			bill = Bill(rooms, nights, roomNumber);		// Store bill information in variable
 
 			std::cout << "Total cost would be " << bill << " Euros" << " from " << nights << " nights\n";	 // Condition for whether to print "night" or "nights"?	
 

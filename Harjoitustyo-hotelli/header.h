@@ -18,7 +18,7 @@ struct Reservation
 struct Room
 {
 	int roomNumber = 0;		// 1-total amount of rooms
-	double price = 100.0; // Default price		
+	double price = 0.0;		
 	bool reserved = false;
 	int capacity = 0;	// 1 = single, 2 = double
 	Reservation reservation;
@@ -30,7 +30,7 @@ struct Room
 
 // Function declarations
 void ReserveRoom(std::vector<Room>& rooms, std::vector<Reservation>& reservations, int roomQuantity);
-double Bill(Room (&room), int nights, int roomNumber);
+double Bill(std::vector<Room>& rooms, int nights, int roomNumber);
 bool IsRoomEmpty(std::vector<Room>& rooms, int roomNumber);
 template <typename T> void validateType(T& input, const std::string errMsg);
 void PrintReservation(std::vector<Reservation> &reservations);

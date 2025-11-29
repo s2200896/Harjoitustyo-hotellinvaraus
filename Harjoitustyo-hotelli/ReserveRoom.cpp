@@ -14,7 +14,6 @@ void ReserveRoom(std::vector<Room>& rooms, std::vector<Reservation>& reservation
 	int confirm;
 	std::string customerName;
 
-	Room room;	// To access structure data
 
 	do {
 
@@ -81,7 +80,17 @@ void ReserveRoom(std::vector<Room>& rooms, std::vector<Reservation>& reservation
 
 			bill = Bill(rooms, nights, roomNumber);		// Store bill information in variable
 
-			std::cout << "Total cost would be " << bill << " Euros" << " from " << nights << " nights\n";	 // Condition for whether to print "night" or "nights"?	
+			// Print bill
+			const int index = roomNumber - 1;	// Convert roomNumber to 0 based vector index
+			double discount = rooms[index].reservation.discountPercentage;
+
+			if (discount == 0.0) {
+				std::cout << "Total cost would be " << bill << " Euros" << " from " << nights << " " << (nights == 1 ? "night" : "nights") << std::endl;
+			}
+			else {
+				std::cout << "You are granted a " << discount * 100 << "% discount from your reservation. The total price from " << 
+					nights << " " << (nights == 1 ? "night" : "nights") << " is " << bill << " Euros" << std::endl;
+			}
 
 			std::cout << "Confirm reservation? Yes [1], No [0]\n";
 

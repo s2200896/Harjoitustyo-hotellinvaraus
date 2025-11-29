@@ -38,6 +38,7 @@ void PrintAllReservations(std::vector<Reservation>& reservations);
 int GenerateResNum(std::vector<Room>& rooms);		// Generate unique reservation number
 int InitializeRooms(std::vector<Room>& rooms);
 int GetRoomQuantity();
+double GetDiscountRate();
 
 
 

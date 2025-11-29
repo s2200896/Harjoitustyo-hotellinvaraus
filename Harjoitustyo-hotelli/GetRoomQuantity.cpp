@@ -5,8 +5,6 @@
 
 // Returns a random even number betweem 40 and 300
 int GetRoomQuantity() {
-
-	srand(time(0));
 	
 	int rand = (std::rand() % 131) + 20;	// Generates a number Between 20 and 150	
 

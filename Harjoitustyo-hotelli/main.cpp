@@ -82,7 +82,7 @@ int main() {
 		}
 		else {
 			// Greet the customer
-			std::cout << "Thank you! Wishing you a relaxing and pleasant stay." << std::endl;
+			std::cout << "\nThank you! Wishing you a relaxing and pleasant stay." << std::endl;
 
 		}
 

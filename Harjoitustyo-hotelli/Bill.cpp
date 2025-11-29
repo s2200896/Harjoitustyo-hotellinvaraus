@@ -1,19 +1,25 @@
+#include <iostream>
 #include "header.h"
 
-// Returns the bill from the hotel room
-// Add possible discounts later
+// Returns the total hotel room bill, including any applicable discounts
 double Bill(std::vector<Room>& rooms, int nights, int roomNumber) {
 	const int index = roomNumber - 1;	// Convert roomNumber to 0 based vector index
 
-	// If single room, set price to 100€/night
+	// Set nightly price by capacity
 	if (rooms[index].capacity == 1) {
 		rooms[index].price = 100.0;
 	}
-	// If double room, set price to 150€/night
 	else if(rooms[index].capacity == 2) {
 		rooms[index].price = 150.0;
 	}
 
-	return rooms[index].price * nights;		// Return bill
+	double discountPercentage = GetDiscountRate();		// Discount value
+	rooms[index].reservation.discountPercentage = discountPercentage;
+
+	double initialPrice = rooms[index].price * nights;		// Before discount
+	double discount = discountPercentage * initialPrice;	// Discount amount
+	double reducedPrice = initialPrice - discount;		// After discount
+
+	return reducedPrice;
 
 }

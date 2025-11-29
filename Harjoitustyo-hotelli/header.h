@@ -39,6 +39,8 @@ int GenerateResNum(std::vector<Room>& rooms);		// Generate unique reservation nu
 int InitializeRooms(std::vector<Room>& rooms);
 int GetRoomQuantity();
 double GetDiscountRate();
+int SelectRoom(int, int);
+int RoomRange(int, int);
 
 
 

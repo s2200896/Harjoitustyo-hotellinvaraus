@@ -11,27 +11,102 @@ void ReserveRoom(std::vector<Room>& rooms, std::vector<Reservation>& reservation
 	int nights;
 	double bill;
 	int choice;
+	int roomType;
 	int confirm;
 	std::string customerName;
 
 
 	do {
 
-		std::cout << "What room would you like to reserve? (1-" << roomQuantity << "): ";
+		std::cout << "Would you like to pick a room by yourself or have it assigned to you? Pick yourself [1], Have it assigned [0]: ";
 
-		// Validate room number. Must be integer, more or equal to 1 and less or equal to hotel.quantity (total amount of rooms)
+		// Validate input
 		do {
-			validateType(roomNumber, room_errmsg(roomQuantity));
+			validateType(choice, assignRoom_errmsg);
 
-			if (roomNumber < 1 || roomNumber > rooms.size()) {
-				std::cout << room_errmsg(roomQuantity);
+			if (choice != 1 && choice != 0) {
+				std::cout << assignRoom_errmsg;
 			}
 
-		} while (roomNumber < 1 || roomNumber > rooms.size());
+		} while (choice != 1 && choice != 0);
+
+		// Customer picks the room manually
+		if (choice == 1) {
+			std::cout << "What type of room would you like to reserve? Single [1], Double [0]: ";
+
+			// Validate room type input
+			do {
+				validateType(roomType, roomType_errmsg);
+
+				if (roomType != 1 && roomType != 0) {
+					std::cout << roomType_errmsg;
+				}
+
+			} while (roomType != 1 && roomType != 0);
+
+			// Get the limit for the chosen room type
+			int limit = RoomRange(roomType, roomQuantity);
+
+
+			// Ask for specific room number
+			if (roomType == 1) {	// Single room
+				std::cout << "What room would you like to reserve? (1-" << limit << "): ";
+			}
+			else if (roomType == 0) {	// Double room
+				std::cout << "What room would you like to reserve? (" << limit << "-" << roomQuantity << "): ";
+			}
+
+
+			// Validate room number
+			do {
+				validateType(roomNumber, room_errmsg(limit));
+
+				if (roomNumber < 1 || roomNumber > limit) {
+					std::cout << room_errmsg(limit);
+				}
+
+			} while (roomNumber < 1 || roomNumber > limit);
+
+		}
+
+		// Room is assigned
+		if (choice == 0) {
+			std::cout << "What type of room would you like to reserve? Single [1], Double [0]: ";
+
+			// Validate room type input
+			do {
+				validateType(roomType, roomType_errmsg);
+
+				if (roomType != 1 && roomType != 0) {
+					std::cout << roomType_errmsg;
+				}
+
+			} while (roomType != 1 && roomType != 0);
+
+
+			int range = RoomRange(roomType, roomQuantity);
+
+			// Determine room number range for selected type
+			int minRoom, maxRoom;
+			if (roomType == 1) {	// Single room
+				minRoom = 1;
+				maxRoom = range;
+			}
+			else {	// Double room
+				minRoom = range;
+				maxRoom = roomQuantity;
+			}
+
+			// Randomly select room until an empty one is found
+			do {
+				roomNumber = SelectRoom(minRoom, maxRoom);	// Pass maximum amount of rooms
+
+			} while (!IsRoomEmpty(rooms, roomNumber));
+		}
 
 
 
-		// Store information about the reservation to variable
+		// Store reservation data
 		empty = IsRoomEmpty(rooms, roomNumber);
 
 

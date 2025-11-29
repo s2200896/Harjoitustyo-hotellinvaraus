@@ -136,6 +136,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PrintAllReservations.cpp" />
     <ClCompile Include="PrintReservation.cpp" />
+    <ClCompile Include="RoomRange.cpp" />
+    <ClCompile Include="SelectRoom.cpp" />
     <ClCompile Include="ReserveRoom.cpp" />
     <ClCompile Include="GenerateResNum.cpp" />
   </ItemGroup>

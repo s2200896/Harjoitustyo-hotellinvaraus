@@ -12,7 +12,7 @@ int main() {
 	int input;
 	int choice;
 
-	srand(time(0));	// For GenerateResNum()
+	srand(time(0));	
 
 	
 	std::vector<Room> rooms;

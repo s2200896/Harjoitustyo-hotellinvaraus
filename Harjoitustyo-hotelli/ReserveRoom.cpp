@@ -18,9 +18,21 @@ void ReserveRoom(std::vector<Room>& rooms, std::vector<Reservation>& reservation
 
 	do {
 
-		std::cout << "Would you like to pick a room by yourself or have it assigned to you? Pick yourself [1], Have it assigned [0]: ";
+		std::cout << "\nWhat type of room would you like to reserve? Single [1], Double [0]: ";
 
 		// Validate input
+		do {
+			validateType(roomType, assignRoom_errmsg);
+
+			if (roomType != 1 && roomType != 0) {
+				std::cout << roomType_errmsg;
+			}
+
+		} while (roomType != 1 && roomType != 0);
+
+	
+		std::cout << "\nWould you like to pick a room by yourself or have it assigned to you?\n" << "Pick yourself[1], Have it assigned[0]: ";
+
 		do {
 			validateType(choice, assignRoom_errmsg);
 
@@ -30,76 +42,52 @@ void ReserveRoom(std::vector<Room>& rooms, std::vector<Reservation>& reservation
 
 		} while (choice != 1 && choice != 0);
 
+
+		// Get the start or end range, depending on chosen room type
+		int range = RoomRange(roomType, roomQuantity);
+
+		// Determine room number range for selected type
+		int minRoom, maxRoom;
+		if (roomType == 1) {	// Single room
+			minRoom = 1;
+			maxRoom = range;
+		}
+		else {	// Double room
+			minRoom = range;
+			maxRoom = roomQuantity;
+		}
+
+
 		// Customer picks the room manually
 		if (choice == 1) {
-			std::cout << "What type of room would you like to reserve? Single [1], Double [0]: ";
-
-			// Validate room type input
-			do {
-				validateType(roomType, roomType_errmsg);
-
-				if (roomType != 1 && roomType != 0) {
-					std::cout << roomType_errmsg;
-				}
-
-			} while (roomType != 1 && roomType != 0);
-
-			// Get the limit for the chosen room type
-			int limit = RoomRange(roomType, roomQuantity);
-
 
 			// Ask for specific room number
 			if (roomType == 1) {	// Single room
-				std::cout << "What room would you like to reserve? (1-" << limit << "): ";
+				std::cout << "\nWhat room would you like to reserve? (1-" << range << "): ";
 			}
 			else if (roomType == 0) {	// Double room
-				std::cout << "What room would you like to reserve? (" << limit << "-" << roomQuantity << "): ";
+				std::cout << "\nWhat room would you like to reserve? (" << range << "-" << roomQuantity << "): ";
 			}
 
 
 			// Validate room number
 			do {
-				validateType(roomNumber, room_errmsg(limit));
+				validateType(roomNumber, room_errmsg(minRoom, maxRoom));
 
-				if (roomNumber < 1 || roomNumber > limit) {
-					std::cout << room_errmsg(limit);
+				if (roomNumber < minRoom || roomNumber > maxRoom) {
+					std::cout << room_errmsg(minRoom, maxRoom);
 				}
 
-			} while (roomNumber < 1 || roomNumber > limit);
+			} while (roomNumber < minRoom || roomNumber > maxRoom);
 
 		}
 
 		// Room is assigned
 		if (choice == 0) {
-			std::cout << "What type of room would you like to reserve? Single [1], Double [0]: ";
-
-			// Validate room type input
-			do {
-				validateType(roomType, roomType_errmsg);
-
-				if (roomType != 1 && roomType != 0) {
-					std::cout << roomType_errmsg;
-				}
-
-			} while (roomType != 1 && roomType != 0);
-
-
-			int range = RoomRange(roomType, roomQuantity);
-
-			// Determine room number range for selected type
-			int minRoom, maxRoom;
-			if (roomType == 1) {	// Single room
-				minRoom = 1;
-				maxRoom = range;
-			}
-			else {	// Double room
-				minRoom = range;
-				maxRoom = roomQuantity;
-			}
 
 			// Randomly select room until an empty one is found
 			do {
-				roomNumber = SelectRoom(minRoom, maxRoom);	// Pass maximum amount of rooms
+				roomNumber = SelectRoom(minRoom, maxRoom);	// min and max values as parameter
 
 			} while (!IsRoomEmpty(rooms, roomNumber));
 		}
@@ -114,7 +102,7 @@ void ReserveRoom(std::vector<Room>& rooms, std::vector<Reservation>& reservation
 		// Reserve room if empty
 		if (empty) {
 
-			std::cout << "How many nights would you like to reserve the room for?\n";
+			std::cout << "\nHow many nights would you like to reserve the room for?\n";
 
 			// Validate amount of nights. Must be integer and positive number.
 			do {
@@ -129,11 +117,11 @@ void ReserveRoom(std::vector<Room>& rooms, std::vector<Reservation>& reservation
 
 			// Ask customer's name
 			do {
-				std::cout << "In whose name the reservation is made? (first and last name)\n";
+				std::cout << "\nIn whose name the reservation is made? (first and last name)\n";
 				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 				std::getline(std::cin, customerName);
 
-				std::cout << "Is the following name correct: " << customerName << std::endl << "Yes[1], No[0]: ";
+				std::cout << "\nIs the following name correct: " << customerName << std::endl << "Yes[1], No[0]: ";
 
 				// Validate input. Must be 1 or 0
 				do {
@@ -160,10 +148,10 @@ void ReserveRoom(std::vector<Room>& rooms, std::vector<Reservation>& reservation
 			double discount = rooms[index].reservation.discountPercentage;
 
 			if (discount == 0.0) {
-				std::cout << "Total cost would be " << bill << " Euros" << " from " << nights << " " << (nights == 1 ? "night" : "nights") << std::endl;
+				std::cout << "\nTotal cost would be " << bill << " Euros" << " from " << nights << " " << (nights == 1 ? "night" : "nights") << std::endl;
 			}
 			else {
-				std::cout << "You are granted a " << discount * 100 << "% discount from your reservation. The total price from " << 
+				std::cout << "\nYou are granted a " << discount * 100 << "% discount from your reservation. The total price from " << 
 					nights << " " << (nights == 1 ? "night" : "nights") << " is " << bill << " Euros" << std::endl;
 			}
 
@@ -199,14 +187,14 @@ void ReserveRoom(std::vector<Room>& rooms, std::vector<Reservation>& reservation
 				// Update reservations vector
 				reservations.push_back(newReservation);
 
-				std::cout << "Room " << roomNumber << " is reserved for " << rooms[index].reservation.customer << ".\n";
+				std::cout << "\nRoom " << roomNumber << " is reserved for " << rooms[index].reservation.customer << ".\n";
 			}
 			else {
 				ReserveRoom(rooms, reservations, roomQuantity);		// Start over incase of cancelled reservation 
 			}
 		}
 		else {
-			std::cout << "Room " << roomNumber << " is already reserved. Please select another room.\n";
+			std::cout << "\nRoom " << roomNumber << " is already reserved. Please select another room.\n";
 		}
 
 

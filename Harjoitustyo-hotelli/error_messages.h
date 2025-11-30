@@ -1,8 +1,8 @@
 #pragma once
 #include <string>
 
-inline std::string room_errmsg(int maxRooms) {
-	return "Invalid room number. Please enter a number between 1 and " + std::to_string(maxRooms) + ": ";
+inline std::string room_errmsg(int minRoom, int maxRoom) {
+	return "Invalid room number. Please enter a number between " + std::to_string(minRoom) + " and " + std::to_string(maxRoom) + ": ";
 }
 const std::string nights_errmsg = "Invalid amount of nights. Please enter a positive number: ";
 const std::string choice_errmsg = "Invalid input. Please enter [1] for Yes, [0] for No:  ";

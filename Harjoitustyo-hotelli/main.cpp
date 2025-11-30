@@ -19,7 +19,7 @@ int main() {
 	std::vector<Reservation> reservations;	// Reservations are stored in order of creation, not by room number
 
 	// Initialize rooms
-	int roomQuantity = InitializeRooms(rooms);
+	const int roomQuantity = InitializeRooms(rooms);
 
 
 	do {

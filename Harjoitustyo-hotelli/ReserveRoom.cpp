@@ -145,14 +145,16 @@ void ReserveRoom(std::vector<Room>& rooms, std::vector<Reservation>& reservation
 
 			// Print bill
 			const int index = roomNumber - 1;	// Convert roomNumber to 0 based vector index
-			double discount = rooms[index].reservation.discountPercentage;
+			double discountPercentage = rooms[index].reservation.discountPercentage;
+			double initialPrice = rooms[index].price * nights;	// Before discount
+			double discount = discountPercentage * initialPrice;	// Discount amount
 
 			if (discount == 0.0) {
-				std::cout << "\nTotal cost would be " << bill << " Euros" << " from " << nights << " " << (nights == 1 ? "night" : "nights") << std::endl;
+				std::cout << "\nTotal cost would be " << bill << " euros" << " from " << nights << " " << (nights == 1 ? "night" : "nights") << std::endl;
 			}
 			else {
-				std::cout << "\nYou are granted a " << discount * 100 << "% discount from your reservation. The total price from " << 
-					nights << " " << (nights == 1 ? "night" : "nights") << " is " << bill << " Euros" << std::endl;
+				std::cout << "\nA " << discountPercentage * 100 << "% discount has been applied to your reservation. The discount totals " << discount << 
+				" euros, resulting in a final price of " << bill << " euros for " << nights << " " << (nights == 1 ? "night" : "nights") << std::endl;
 			}
 
 			std::cout << "Confirm reservation? Yes [1], No [0]\n";
@@ -190,6 +192,7 @@ void ReserveRoom(std::vector<Room>& rooms, std::vector<Reservation>& reservation
 				std::cout << "\nRoom " << roomNumber << " is reserved for " << rooms[index].reservation.customer << ".\n";
 			}
 			else {
+				system("cls");
 				ReserveRoom(rooms, reservations, roomQuantity);		// Start over incase of cancelled reservation 
 			}
 		}

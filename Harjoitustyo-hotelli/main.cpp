@@ -49,8 +49,8 @@ int main() {
 			break;
 		case 2: PrintReservation(reservations);
 			break;
-		//case 3: FindReservation();
-		//	break;
+		case 3: FindReservation(reservations);
+			break;
 		//case 4: CancelReservation();
 		//	break;
 		case 5: PrintAllReservations(reservations);
@@ -61,8 +61,6 @@ int main() {
 
 
 
-		// Make sure that there isn't any leftover characters before using cin.get()
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 		// Ask customer if they need help with anything else
 		std::cout << "\nCan I help you with something else? Yes [1], No [0]" << std::endl;

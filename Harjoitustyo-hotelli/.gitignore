@@ -6,3 +6,7 @@ x64/
 *.obj
 *.pdb
 *.log
+
+# Project
+rooms.txt
+reservations.txt

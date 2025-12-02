@@ -117,9 +117,17 @@ void ReserveRoom(std::vector<Room>& rooms, std::vector<Reservation>& reservation
 
 			// Ask customer's name
 			do {
-				std::cout << "\nIn whose name the reservation is made? (first and last name)\n";
 				std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-				std::getline(std::cin, customerName);
+
+				do {
+					std::cout << "\nIn whose name the reservation is made? (first and last name)\n";
+					std::getline(std::cin, customerName);
+
+					if (!ValidateName(customerName)) {
+						std::cout << "\nInvalid input. Please enter first and last name without any special characters." << std::endl;
+					}
+
+				} while (!ValidateName(customerName));
 
 				std::cout << "\nIs the following name correct: " << customerName << std::endl << "Yes[1], No[0]: ";
 
@@ -183,8 +191,11 @@ void ReserveRoom(std::vector<Room>& rooms, std::vector<Reservation>& reservation
 				Reservation newReservation;
 				newReservation.reservationNumber = reservationNumber;
 				newReservation.customer = customerName;
+				newReservation.discountPercentage = rooms[index].reservation.discountPercentage;
+				newReservation.bill = bill;
 				newReservation.roomNumber = roomNumber;
 				newReservation.capacity = rooms[index].capacity;
+				newReservation.duration = nights;
 
 				// Update reservations vector
 				reservations.push_back(newReservation);

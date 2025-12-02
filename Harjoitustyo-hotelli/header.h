@@ -11,8 +11,10 @@ struct Reservation
 	int reservationNumber = 0;
 	std::string customer = "";		// Customer name
 	double discountPercentage = 0.0;
+	double bill = 0.0;
 	int roomNumber = 0;
 	int capacity = 0;
+	int duration = 0;	// Number of nights the room is booked
 };
 
 struct Room
@@ -43,5 +45,7 @@ int SelectRoom(int, int);
 int RoomRange(int, int);
 void FindReservation(std::vector<Reservation>& reservations);
 void CancelReservation(std::vector<Room>& rooms, std::vector<Reservation>&  reservations);
+void RoomDataToFile(std::vector<Room>& rooms, std::vector<Reservation>& reservations);
+bool ValidateName(const std::string& s);
 
 

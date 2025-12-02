@@ -79,6 +79,7 @@ int main() {
 			system("cls");
 		}
 		else {
+			RoomDataToFile(rooms, reservations);
 			// Greet the customer
 			std::cout << "\nThank you! Wishing you a relaxing and pleasant stay." << std::endl;
 

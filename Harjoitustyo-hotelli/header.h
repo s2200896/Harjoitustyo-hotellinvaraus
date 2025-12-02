@@ -42,5 +42,6 @@ double GetDiscountRate();
 int SelectRoom(int, int);
 int RoomRange(int, int);
 void FindReservation(std::vector<Reservation>& reservations);
+void CancelReservation(std::vector<Room>& rooms, std::vector<Reservation>&  reservations);
 
 

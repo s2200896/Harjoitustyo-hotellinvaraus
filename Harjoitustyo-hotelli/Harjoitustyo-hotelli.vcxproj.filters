@@ -65,5 +65,8 @@
     <ClCompile Include="FindReservation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CancelReservation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

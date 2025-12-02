@@ -104,15 +104,15 @@ void ReserveRoom(std::vector<Room>& rooms, std::vector<Reservation>& reservation
 
 			std::cout << "\nHow many nights would you like to reserve the room for?\n";
 
-			// Validate amount of nights. Must be integer and positive number.
+			// Validate amount of nights. Must be a number between 1 and 31
 			do {
 				validateType(nights, nights_errmsg);
 
-				if (nights < 1) {
+				if (nights < 1 || nights > 31) {
 					std::cout << nights_errmsg;
 				}
 
-			} while (nights < 1); // Max value for amount of nights is not defined
+			} while (nights < 1 || nights > 31);
 
 
 			// Ask customer's name

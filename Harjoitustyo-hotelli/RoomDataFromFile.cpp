@@ -83,5 +83,13 @@ void RoomDataFromFile(std::vector<Room>& rooms, std::vector<Reservation>& reserv
 		reservationsfile.close();
 	}
 
+	// For each reservation, mark the matching room as reserved and copy the reservation into it
+	for (const auto& res : reservations) {
+		int index = res.roomNumber - 1;
+		if (index >= 0 && index < rooms.size()) {
+			rooms[index].reserved = true;
+			rooms[index].reservation = res;
+		}
+	}
 	
 }

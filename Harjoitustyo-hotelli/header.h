@@ -38,7 +38,7 @@ template <typename T> void validateType(T& input, const std::string errMsg);
 void PrintReservation(std::vector<Reservation> &reservations);
 void PrintAllReservations(std::vector<Reservation>& reservations);
 int GenerateResNum(std::vector<Room>& rooms);		// Generate unique reservation number
-int InitializeRooms(std::vector<Room>& rooms);
+int InitializeRooms(std::vector<Room>& rooms, int);
 int GetRoomQuantity();
 double GetDiscountRate();
 int SelectRoom(int, int);
@@ -46,6 +46,7 @@ int RoomRange(int, int);
 void FindReservation(std::vector<Reservation>& reservations);
 void CancelReservation(std::vector<Room>& rooms, std::vector<Reservation>&  reservations);
 void RoomDataToFile(std::vector<Room>& rooms, std::vector<Reservation>& reservations);
+void RoomDataFromFile(std::vector<Room>& rooms, std::vector<Reservation>& reservations);
 bool ValidateName(const std::string& s);
 
 

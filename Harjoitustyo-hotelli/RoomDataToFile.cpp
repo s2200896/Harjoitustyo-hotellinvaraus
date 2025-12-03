@@ -18,9 +18,6 @@ void RoomDataToFile(std::vector<Room>& rooms, std::vector<Reservation>& reservat
 
 		roomsfile.close();
 	}
-	else {
-		std::cout << "Unable to open rooms.txt";
-	}
 
 
 	// Write contents of the reservation vector to a file
@@ -39,8 +36,5 @@ void RoomDataToFile(std::vector<Room>& rooms, std::vector<Reservation>& reservat
 		}
 
 		reservationsfile.close();
-	}
-	else {
-		std::cout << "Unable to open reservations.txt";
 	}
 }

@@ -18,8 +18,21 @@ int main() {
 	std::vector<Room> rooms;
 	std::vector<Reservation> reservations;	// Reservations are stored in order of creation, not by room number
 
-	// Initialize rooms
-	const int roomQuantity = InitializeRooms(rooms);
+	// Load room data from disk
+	RoomDataFromFile(rooms, reservations);
+
+	int roomQuantity;
+
+	// If data was found, use existing amount of rooms
+	if (!rooms.empty()) {
+		roomQuantity = rooms.size();
+	}
+	// If not found, get new room quantity and initialize rooms
+	else {
+		roomQuantity = GetRoomQuantity();	// Total amount of rooms
+		InitializeRooms(rooms, roomQuantity);	// Initialize rooms
+
+	}
 
 
 	do {

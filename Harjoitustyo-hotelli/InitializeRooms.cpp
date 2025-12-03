@@ -1,10 +1,7 @@
 #include <iostream>
 #include "header.h"
 
-int InitializeRooms(std::vector<Room>& rooms) {
-
-	int roomQuantity = GetRoomQuantity();	// Total amount of rooms
-
+int InitializeRooms(std::vector<Room>& rooms, int roomQuantity) {
 
 	// Resize vector to hold all rooms
 	rooms.resize(roomQuantity);

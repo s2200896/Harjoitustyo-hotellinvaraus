@@ -124,7 +124,7 @@ void ReserveRoom(std::vector<Room>& rooms, std::vector<Reservation>& reservation
 					std::getline(std::cin, customerName);
 
 					if (!ValidateName(customerName)) {
-						std::cout << "\nInvalid input. Please enter first and last name without any special characters." << std::endl;
+						std::cout << "\nInvalid input. Please enter first and last name again." << std::endl;
 					}
 
 				} while (!ValidateName(customerName));

@@ -24,7 +24,7 @@ int main() {
 	int roomQuantity;
 
 	// If data was found, use existing amount of rooms
-	if (!rooms.empty()) {
+	if (!rooms.empty() && !reservations.empty()) {
 		roomQuantity = rooms.size();
 	}
 	// If not found, get new room quantity and initialize rooms

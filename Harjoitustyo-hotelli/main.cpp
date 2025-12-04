@@ -68,7 +68,9 @@ int main() {
 			break;
 		case 5: PrintAllReservations(reservations);
 			break;
-		case 6: return 0;
+		case 6: 
+			RoomDataToFile(rooms, reservations);
+			return 0;
 
 		}
 

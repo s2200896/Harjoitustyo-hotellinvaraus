@@ -48,5 +48,6 @@ void CancelReservation(std::vector<Room>& rooms, std::vector<Reservation>&  rese
 void RoomDataToFile(std::vector<Room>& rooms, std::vector<Reservation>& reservations);
 void RoomDataFromFile(std::vector<Room>& rooms, std::vector<Reservation>& reservations);
 bool ValidateName(const std::string& s);
+void PrintReservationField(const std::string& label, const std::string& value, int width = 25);
 
 

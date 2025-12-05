@@ -137,6 +137,7 @@
     <ClCompile Include="IsRoomEmpty.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PrintAllReservations.cpp" />
+    <ClCompile Include="PrintReservationField.cpp" />
     <ClCompile Include="PrintReservation.cpp" />
     <ClCompile Include="RoomDataFromFile.cpp" />
     <ClCompile Include="RoomRange.cpp" />

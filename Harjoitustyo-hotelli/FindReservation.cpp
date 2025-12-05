@@ -33,10 +33,21 @@ void FindReservation(std::vector<Reservation>& reservations) {
 		// Reservation found
 		if (index != -1) {
 			std::cout << "\nDetails of the booking" << std::endl;
-			std::cout << "\nName: " << reservations[index].customer << std::endl;
-			std::cout << "Reservation number: " << reservations[index].reservationNumber << std::endl;
-			std::cout << "Room: " << reservations[index].roomNumber << std::endl;
-			std::cout << "Room type: " << reservations[index].capacity << std::endl;
+			std::cout << std::endl << std::endl;
+			PrintReservationField("Reservation number", std::to_string(reservations[index].reservationNumber));
+			std::cout << std::endl;
+
+			PrintReservationField("Room number", std::to_string(reservations[index].roomNumber));
+			PrintReservationField("Room type", std::to_string(reservations[index].capacity) + " person room");
+			std::cout << std::endl;
+
+			PrintReservationField("Customer name", reservations[index].customer);
+			PrintReservationField("Nights staying", std::to_string(reservations[index].duration));
+			std::cout << std::endl;
+
+			PrintReservationField("Discount percentage", std::to_string((int)(reservations[index].discountPercentage * 100)) + "%");
+			PrintReservationField("Invoice", std::to_string((int)reservations[index].bill) + " euros");
+			std::cout << std::endl;
 			
 		}
 		// Reservation not found
@@ -58,10 +69,21 @@ void FindReservation(std::vector<Reservation>& reservations) {
 		// Reservation found
 		if (index != -1) {
 			std::cout << "\nDetails of the booking" << std::endl;
-			std::cout << "\nName: " << reservations[index].customer << std::endl;
-			std::cout << "Reservation number: " << reservations[index].reservationNumber << std::endl;
-			std::cout << "Room: " << reservations[index].roomNumber << std::endl;
-			std::cout << "Room type: " << reservations[index].capacity << std::endl;
+			std::cout << std::endl << std::endl;
+			PrintReservationField("Reservation number", std::to_string(reservations[index].reservationNumber));
+			std::cout << std::endl;
+
+			PrintReservationField("Room number", std::to_string(reservations[index].roomNumber));
+			PrintReservationField("Room type", std::to_string(reservations[index].capacity) + " person room");
+			std::cout << std::endl;
+
+			PrintReservationField("Customer name", reservations[index].customer);
+			PrintReservationField("Nights staying", std::to_string(reservations[index].duration));
+			std::cout << std::endl;
+
+			PrintReservationField("Discount percentage", std::to_string((int)(reservations[index].discountPercentage * 100)) + "%");
+			PrintReservationField("Invoice", std::to_string((int)reservations[index].bill) + " euros");
+			std::cout << std::endl;
 		}
 		// Reservation not found
 		else {

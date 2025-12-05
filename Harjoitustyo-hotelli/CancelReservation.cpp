@@ -32,10 +32,22 @@ void CancelReservation(std::vector<Room>& rooms, std::vector<Reservation>& reser
 		const int j = RoomIndex;
 
 		std::cout << "\nThe following booking was found" << std::endl;
-		std::cout << "\Name: " << reservations[i].customer << std::endl;
-		std::cout << "Reservation number: " << reservations[i].reservationNumber << std::endl;
-		std::cout << "Room: " << reservations[i].roomNumber << std::endl;
-		std::cout << "Room type: " << reservations[i].capacity << std::endl;
+
+		std::cout << std::endl << std::endl;
+		PrintReservationField("Reservation number", std::to_string(reservations[i].reservationNumber));
+		std::cout << std::endl;
+
+		PrintReservationField("Room number", std::to_string(reservations[i].roomNumber));
+		PrintReservationField("Room type", std::to_string(reservations[i].capacity) + " person room");
+		std::cout << std::endl;
+
+		PrintReservationField("Customer name", reservations[i].customer);
+		PrintReservationField("Nights staying", std::to_string(reservations[i].duration));
+		std::cout << std::endl;
+
+		PrintReservationField("Discount percentage", std::to_string((int)(reservations[i].discountPercentage * 100)) + "%");
+		PrintReservationField("Invoice", std::to_string((int)reservations[i].bill) + " euros");
+		std::cout << std::endl;
 
 		std::cout << "\nCancel the reservation? Yes [1], No [0]" << std::endl;
 

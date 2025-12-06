@@ -52,7 +52,25 @@ void FindReservation(std::vector<Reservation>& reservations) {
 		}
 		// Reservation not found
 		else {
+			int selection;
+
 			std::cout << "\nNo reservation was found." << std::endl;
+			std::cout << "\nWould you like to try again? Yes [1], No [0]" << std::endl;
+
+			do {
+				validateType(selection, choice_errmsg);
+
+				if (selection != 1 && selection != 0) {
+					std::cout << choice_errmsg;
+				}
+
+			} while (selection != 1 && selection != 0);
+
+			// Try again
+			if (selection == 1) {
+				system("cls");
+				FindReservation(reservations);
+			}
 		}
 		
 	}
@@ -87,7 +105,25 @@ void FindReservation(std::vector<Reservation>& reservations) {
 		}
 		// Reservation not found
 		else {
+			int selection;
+
 			std::cout << "\nNo reservation was found." << std::endl;
+			std::cout << "\nWould you like to try again? Yes [1], No [0]" << std::endl;
+
+			do {
+				validateType(selection, choice_errmsg);
+
+				if (selection != 1 && selection != 0) {
+					std::cout << choice_errmsg;
+				}
+
+			} while (selection != 1 && selection != 0);
+
+			// Try again
+			if (selection == 1) {
+				system("cls");
+				FindReservation(reservations);
+			}
 		}
 
 

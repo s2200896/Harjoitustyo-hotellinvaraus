@@ -31,7 +31,7 @@ void ReserveRoom(std::vector<Room>& rooms, std::vector<Reservation>& reservation
 		} while (roomType != 1 && roomType != 0);
 
 	
-		std::cout << "\nWould you like to pick a room by yourself or have it assigned to you?\n" << "Pick yourself[1], Have it assigned[0]: ";
+		std::cout << "\nWould you like to pick a room by yourself [1] or have it assigned to you [0]?\n";
 
 		do {
 			validateType(choice, assignRoom_errmsg);

@@ -95,6 +95,7 @@ void CancelReservation(std::vector<Room>& rooms, std::vector<Reservation>& reser
 
 		// Try with another reservation number
 		if (selection == 1) {
+			system("cls");
 			CancelReservation(rooms, reservations);
 		}
 

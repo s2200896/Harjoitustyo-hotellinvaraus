@@ -136,14 +136,20 @@
     <ClCompile Include="InitializeRooms.cpp" />
     <ClCompile Include="IsRoomEmpty.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MakeReservation.cpp" />
+    <ClCompile Include="PickRoom.cpp" />
     <ClCompile Include="PrintAllReservations.cpp" />
+    <ClCompile Include="PrintBill.cpp" />
     <ClCompile Include="PrintReservationField.cpp" />
     <ClCompile Include="PrintReservation.cpp" />
     <ClCompile Include="RoomDataFromFile.cpp" />
     <ClCompile Include="RoomRange.cpp" />
+    <ClCompile Include="SelectName.cpp" />
+    <ClCompile Include="SelectNights.cpp" />
     <ClCompile Include="SelectRoom.cpp" />
     <ClCompile Include="ReserveRoom.cpp" />
     <ClCompile Include="GenerateResNum.cpp" />
+    <ClCompile Include="UpdateResDetails.cpp" />
     <ClCompile Include="ValidateName.cpp" />
     <ClCompile Include="RoomDataToFile.cpp" />
   </ItemGroup>

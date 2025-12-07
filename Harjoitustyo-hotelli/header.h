@@ -32,7 +32,7 @@ struct Room
 
 // Function declarations
 void ReserveRoom(std::vector<Room>& rooms, std::vector<Reservation>& reservations, int roomQuantity);
-double Bill(std::vector<Room>& rooms, int nights, int roomNumber);
+double Bill(std::vector<Room>& rooms, int nights, int roomNumber, double discountPercentage);
 bool IsRoomEmpty(std::vector<Room>& rooms, int roomNumber);
 template <typename T> void validateType(T& input, const std::string errMsg);
 void PrintReservation(std::vector<Reservation> &reservations);
@@ -49,5 +49,9 @@ void RoomDataToFile(std::vector<Room>& rooms, std::vector<Reservation>& reservat
 void RoomDataFromFile(std::vector<Room>& rooms, std::vector<Reservation>& reservations);
 bool ValidateName(const std::string& s);
 void PrintReservationField(const std::string& label, const std::string& value, int width = 25);
-
-
+int PickRoom(std::vector<Room>& rooms, int roomQuantity);
+int SelectNights();
+void SelectName(std::string & customerName);
+void PrintBill(std::vector<Room>& rooms, int roomNumber, int nights, double bill);
+void MakeReservation(std::vector<Room>& rooms, std::vector<Reservation>& reservations, std::string customerName, double bill, int roomNumber, int nights);
+void UpdateResDetails(std::vector<Room>& rooms, std::vector<Reservation>& reservations, int  & roomQuantity, int & roomNumber, std::string & customerName, int & nights);

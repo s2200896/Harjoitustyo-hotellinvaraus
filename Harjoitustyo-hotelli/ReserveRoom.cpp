@@ -6,206 +6,51 @@
 
 
 void ReserveRoom(std::vector<Room>& rooms, std::vector<Reservation>& reservations, int roomQuantity) {
-	int roomNumber;
-	int nights;
-	double bill;
 	int choice;
-	int roomType;
-	int confirm;
 	std::string customerName;
 
+	// Select room
+	int roomNumber = PickRoom(rooms, roomQuantity);
+
+	// Select nights 
+	int nights = SelectNights();
+
+	// Select name
+	SelectName(customerName);
 
 
-	std::cout << "\nWhat type of room would you like to reserve? Single [1], Double [0]: ";
+	double discountPercentage = GetDiscountRate();		// Discount percentage
+	double bill = Bill(rooms, nights, roomNumber, discountPercentage);		// Store bill information in variable
 
-	// Validate input
+
+	PrintBill(rooms, roomNumber, nights, bill);
+
+
 	do {
-		validateType(roomType, assignRoom_errmsg);
 
-		if (roomType != 1 && roomType != 0) {
-			std::cout << roomType_errmsg;
-		}
-
-	} while (roomType != 1 && roomType != 0);
-
-
-	std::cout << "\nWould you like to pick a room by yourself [1] or have it assigned to you [0]?\n";
-
-	do {
-		validateType(choice, assignRoom_errmsg);
-
-		if (choice != 1 && choice != 0) {
-			std::cout << assignRoom_errmsg;
-		}
-
-	} while (choice != 1 && choice != 0);
-
-
-	// Get the start or end range, depending on chosen room type
-	int range = RoomRange(roomType, roomQuantity);
-
-	// Determine room number range for selected type
-	int minRoom, maxRoom;
-	if (roomType == 1) {	// Single room
-		minRoom = 1;
-		maxRoom = range;
-	}
-	else {	// Double room
-		minRoom = range;
-		maxRoom = roomQuantity;
-	}
-
-
-	// Customer picks the room manually
-	if (choice == 1) {
-
-		// Ask for new room number if the selected one is reserved
-		do {
-			// Ask for specific room number
-			if (roomType == 1) {	// Single room
-				std::cout << "\nWhat room would you like to reserve? (1-" << range << "): ";
-			}
-			else if (roomType == 0) {	// Double room
-				std::cout << "\nWhat room would you like to reserve? (" << range << "-" << roomQuantity << "): ";
-			}
-
-
-			// Validate room number
-			do {
-				validateType(roomNumber, room_errmsg(minRoom, maxRoom));
-
-				if (roomNumber < minRoom || roomNumber > maxRoom) {
-					std::cout << room_errmsg(minRoom, maxRoom);
-				}
-
-			} while (roomNumber < minRoom || roomNumber > maxRoom);
-
-			// Room is already reserved
-			if (!IsRoomEmpty(rooms, roomNumber)) {
-				std::cout << "\nRoom " << roomNumber << " is already reserved. Please select another room.\n";
-			}
-
-
-		} while (!IsRoomEmpty(rooms, roomNumber));	
-
-
-	}
-
-	// Room is assigned
-	if (choice == 0) {
-
-		// Randomly select room until an empty one is found
-		do {
-			roomNumber = SelectRoom(minRoom, maxRoom);	// min and max values as parameter
-
-		} while (!IsRoomEmpty(rooms, roomNumber));
-	}
-
-
-
-	std::cout << "\nHow many nights would you like to reserve the room for?\n";
-
-	// Validate amount of nights. Must be a number between 1 and 31
-	do {
-		validateType(nights, nights_errmsg);
-
-		if (nights < 1 || nights > 31) {
-			std::cout << nights_errmsg;
-		}
-
-	} while (nights < 1 || nights > 31);
-
-
-	// Ask customer's name
-	do {
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-		do {
-			std::cout << "\nIn whose name the reservation is made? (first and last name)\n";
-			std::getline(std::cin, customerName);
-
-			if (!ValidateName(customerName)) {
-				std::cout << "\nInvalid input. Please enter first and last name again." << std::endl;
-			}
-
-		} while (!ValidateName(customerName));
-
-		std::cout << "\nIs the following name correct: " << customerName << std::endl << "Yes[1], No[0]: ";
+		std::cout << "Confirm reservation? Yes [1], No [0]\n";
 
 		// Validate input. Must be 1 or 0
 		do {
-			validateType(confirm, choice_errmsg);
+			validateType(choice, choice_errmsg);
 
-			if (confirm != 1 && confirm != 0) {
+			if (choice != 1 && choice != 0) {
 				std::cout << choice_errmsg;
 			}
-		} while (confirm != 1 && confirm != 0);
 
-		// If name is correct break
-		if (confirm == 1) {
-			break;
-		}
-
-	} while (confirm == 0);		// If name is incorrect, ask customer to enter it again
+		} while (choice != 1 && choice != 0);
 
 
-
-	bill = Bill(rooms, nights, roomNumber);		// Store bill information in variable
-
-	// Print bill
-	const int index = roomNumber - 1;	// Convert roomNumber to 0 based vector index
-	double discountPercentage = rooms[index].reservation.discountPercentage;
-	double initialPrice = rooms[index].price * nights;	// Before discount
-	double discount = discountPercentage * initialPrice;	// Discount amount
-
-	if (discount == 0.0) {
-		std::cout << "\nTotal cost would be " << bill << " euros" << " from " << nights << " " << (nights == 1 ? "night" : "nights") << std::endl;
-	}
-	else {
-		std::cout << "\nA " << discountPercentage * 100 << "% discount has been applied to your reservation. The discount totals " << discount <<
-			" euros, resulting in a final price of " << bill << " euros for " << nights << " " << (nights == 1 ? "night" : "nights") << std::endl;
-	}
-
-	std::cout << "Confirm reservation? Yes [1], No [0]\n";
-
-	// Validate input. Must be 1 or 0
-	do {
-		validateType(choice, choice_errmsg);
-
-		if (choice != 1 && choice != 0) {
-			std::cout << choice_errmsg;
-		}
-
-	} while (choice != 1 && choice != 0);
-
-
-
-	if (choice == 1) {
 		// Reserve room
-		const int index = roomNumber - 1;	// Convert roomNumber to 0 based vector index
-		int reservationNumber = GenerateResNum(rooms);
-		rooms[index].reservation.reservationNumber = reservationNumber;
-		rooms[index].reserved = true;
-		rooms[index].reservation.customer = customerName;
+		if (choice == 1) {
+			MakeReservation(rooms, reservations, customerName, bill, roomNumber, nights);
+		}
+		// Change desired values
+		else {
+			UpdateResDetails(rooms, reservations, roomQuantity, roomNumber, customerName, nights);
+			bill = Bill(rooms, nights, roomNumber, discountPercentage);
+		}
 
-		// Create new reservation
-		Reservation newReservation;
-		newReservation.reservationNumber = reservationNumber;
-		newReservation.customer = customerName;
-		newReservation.discountPercentage = rooms[index].reservation.discountPercentage;
-		newReservation.bill = bill;
-		newReservation.roomNumber = roomNumber;
-		newReservation.capacity = rooms[index].capacity;
-		newReservation.duration = nights;
-
-		// Update reservations vector
-		reservations.push_back(newReservation);
-
-		std::cout << "\nRoom " << roomNumber << " is reserved for " << rooms[index].reservation.customer << ".\n";
-	}
-	else {
-		system("cls");
-		ReserveRoom(rooms, reservations, roomQuantity);		// Start over incase of cancelled reservation 
-	}
+	} while (choice == 0);
 
 }

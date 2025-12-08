@@ -28,7 +28,7 @@ void CancelAllReservations(std::vector<Room>& rooms, std::vector<Reservation>& r
 			// Clear reservations vector
 			reservations.clear();
 
-			std::cout << "\nAll reservations all cancelled.\n";
+			std::cout << "\nAll reservations were canceled.\n";
 		}
 
 	}

@@ -3,23 +3,22 @@
 #include "error_messages.h"
 
 
-int PickRoom(std::vector<Room>& rooms, int roomQuantity) {
+int PickRoom(std::vector<Room>& rooms, int roomQuantity, int & roomType) {
 	int roomNumber;
-	int roomType;
 	int choice;
 
 
-	std::cout << "\nWhat type of room would you like to reserve? Single [1], Double [0]: ";
+	std::cout << "\nWhat type of room would you like to reserve? Single [1], Double [2]: ";
 
 	// Validate input
 	do {
-		validateType(roomType, assignRoom_errmsg);
+		validateType(roomType, roomType_errmsg);
 
-		if (roomType != 1 && roomType != 0) {
+		if (roomType != 1 && roomType != 2) {
 			std::cout << roomType_errmsg;
 		}
 
-	} while (roomType != 1 && roomType != 0);
+	} while (roomType != 1 && roomType != 2);
 
 
 	std::cout << "\nWould you like to pick a room by yourself [1] or have it assigned to you [0]?\n";
@@ -58,7 +57,7 @@ int PickRoom(std::vector<Room>& rooms, int roomQuantity) {
 			if (roomType == 1) {	// Single room
 				std::cout << "\nWhat room would you like to reserve? (1-" << range << "): ";
 			}
-			else if (roomType == 0) {	// Double room
+			else if (roomType == 2) {	// Double room
 				std::cout << "\nWhat room would you like to reserve? (" << range << "-" << roomQuantity << "): ";
 			}
 

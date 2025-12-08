@@ -36,7 +36,15 @@ void ReserveRoom(std::vector<Room>& rooms, std::vector<Reservation>& reservation
 		} while (choice != 1 && choice != 0);
 
 		if (choice == 0) {
-			UpdateResDetails(rooms, reservations, roomQuantity, roomNumber, customerName, nights, roomType);
+			
+			// User wants to cancel booking
+			if (UpdateResDetails(rooms, reservations, roomQuantity, roomNumber, customerName, nights, roomType) == 1) {
+				return;
+			}
+			// User wants to continue
+			else {
+				break;
+			}
 		}
 
 	} while (choice == 0);
@@ -76,7 +84,7 @@ void ReserveRoom(std::vector<Room>& rooms, std::vector<Reservation>& reservation
 			}
 			// UpdateResDetails() returns 1; user wants to cancel booking
 			else {
-				break;
+				return;
 			}
 
 		}

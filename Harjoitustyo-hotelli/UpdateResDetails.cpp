@@ -7,17 +7,17 @@ int UpdateResDetails(std::vector<Room>& rooms, std::vector<Reservation>& reserva
 	int selection;
 
 	std::cout << "\nWhich information would you like to change:" << std::endl;
-	std::cout << "1. Name\n" << "2. Room\n" << "3. Amount of nights\n" << "4. Start over\n" << "5. Cancel booking\n";
+	std::cout << "1. Name\n" << "2. Room\n" << "3. Amount of nights\n" << "4. Start over\n" << "5. Cancel booking\n" << "6. Continue\n";
 
-	// Validate input. Must be between 1 and 5
+	// Validate input. Must be between 1 and 6
 	do {
 		validateType(selection, common_errmsg);
 
-		if (selection < 1 || selection > 5) {
+		if (selection < 1 || selection > 6) {
 			std::cout << common_errmsg;
 		}
 
-	} while (selection < 1 || selection > 5);
+	} while (selection < 1 || selection > 6);
 
 	// Handle selection
 
@@ -43,6 +43,10 @@ int UpdateResDetails(std::vector<Room>& rooms, std::vector<Reservation>& reserva
 	// Cancel booking
 	case 5:
 		return 1;
+	
+	// Continue
+	case 6:
+		return 0;
 	}
 
 	return 0;

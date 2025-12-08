@@ -66,8 +66,11 @@ void CancelReservation(std::vector<Room>& rooms, std::vector<Reservation>& reser
 
 			// Clear room
 			rooms[j].reservation.reservationNumber = 0;
-			rooms[j].reserved = false;
 			rooms[j].reservation.customer = "";
+			rooms[j].reservation.discountPercentage = 0.0;
+			rooms[j].reservation.bill = 0.0;
+			rooms[j].reservation.duration = 0;
+			rooms[j].reserved = false;
 
 			// Delete reservation from reservations vector
 			reservations.erase(reservations.begin() + i);

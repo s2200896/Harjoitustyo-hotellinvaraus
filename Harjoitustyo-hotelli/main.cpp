@@ -42,17 +42,18 @@ int main() {
 		std::cout << "2. Print latest Reservation" << std::endl;
 		std::cout << "3. Find Reservation" << std::endl;
 		std::cout << "4. Cancel Reservation" << std::endl;
-		std::cout << "5. Print All Reservations" << std::endl;
-		std::cout << "6. Exit Program" << std::endl;
+		std::cout << "5. Cancel All Reservations" << std::endl;
+		std::cout << "6. Print All Reservations" << std::endl;
+		std::cout << "7. Exit Program" << std::endl;
 
 		// Validate menu input
 		do {
 			validateType(input, common_errmsg);
-			if (input < 1 || input > 6) {
+			if (input < 1 || input > 7) {
 				std::cout << common_errmsg;
 			}
 
-		} while (input < 1 || input > 6);
+		} while (input < 1 || input > 7);
 
 
 
@@ -66,9 +67,11 @@ int main() {
 			break;
 		case 4: CancelReservation(rooms, reservations);
 			break;
-		case 5: PrintAllReservations(reservations);
+		case 5: CancelAllReservations(rooms, reservations);
 			break;
-		case 6: 
+		case 6: PrintAllReservations(reservations);
+			break;
+		case 7: 
 			RoomDataToFile(rooms, reservations);
 			return 0;
 

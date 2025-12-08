@@ -6,8 +6,8 @@
 int UpdateResDetails(std::vector<Room>& rooms, std::vector<Reservation>& reservations, int & roomQuantity, int & roomNumber, std::string & customerName, int & nights, int & roomType) {
 	int selection;
 
-	std::cout << "\nWhich information would you like to change:" << std::endl;
-	std::cout << "1. Name\n" << "2. Room\n" << "3. Amount of nights\n" << "4. Start over\n" << "5. Cancel booking\n" << "6. Continue\n";
+	std::cout << "\nWhat would you like to do?" << std::endl;
+	std::cout << "1. Change name\n" << "2. Change Room\n" << "3. Change nights\n\n" << "4. Start over\n" << "5. Cancel booking\n" << "6. Continue\n";
 
 	// Validate input. Must be between 1 and 6
 	do {

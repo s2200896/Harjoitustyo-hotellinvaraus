@@ -129,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Bill.cpp" />
+    <ClCompile Include="CancelAllReservations.cpp" />
     <ClCompile Include="CancelReservation.cpp" />
     <ClCompile Include="FindReservation.cpp" />
     <ClCompile Include="GetDiscountRate.cpp" />

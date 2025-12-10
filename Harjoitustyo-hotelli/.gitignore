@@ -1,0 +1,12 @@
+# Visual Studio
+.vs/
+Debug/
+Release/
+x64/
+*.obj
+*.pdb
+*.log
+
+# Project
+rooms.txt
+reservations.txt
